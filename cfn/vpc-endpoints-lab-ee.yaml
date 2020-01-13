@@ -1,6 +1,6 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Description: >-
-  VPC Endpoints Lab - AKO 2020
+  VPC Endpoints Lab - AKO 2020 v1.0
 Metadata:
   AWS::CloudFormation::Interface:
     ParameterGroups:
@@ -747,6 +747,7 @@ Resources:
       InstanceType: t2.micro
       Name:  !Sub '${AWS::StackName}' 
       SubnetId: !Ref PublicSubnet1
+      OwnerArn: !Sub 'arn:aws:iam::${AWS::AccountId}:assumed-role/TeamRole/MasterKey'
     DependsOn : [ "keypair" ]
   #ssh key via custom resource
   keypair:
