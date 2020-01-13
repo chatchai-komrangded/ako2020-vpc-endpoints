@@ -1,12 +1,12 @@
 #!/bin/sh
-aws --region=us-west-2 ssm get-parameter --name "labsshkey" --with-decryption --output text --query Parameter.Value > ~/environment/lab.pem
+aws --region=us-west-2 ssm get-parameter --name "lab" --with-decryption --output text --query Parameter.Value > ~/environment/lab.pem
 #add proper carriage returns
 sed -i 's/\\n/\n/g' ~/environment/lab.pem
 #correct perms
-sudo chmod 600 ~/environment/lab.pem
-#add an /etc/hosts entry for convenience
-salesappip=`aws cloudformation --region us-west-2 describe-stacks --stack-name vpc-endpoints-lab  --query "Stacks[0].Outputs[?OutputKey=='EC2Instance1IP'].OutputValue" --output text`
-reportsengineip=`aws cloudformation --region us-west-2 describe-stacks --stack-name vpc-endpoints-lab  --query "Stacks[0].Outputs[?OutputKey=='EC2Instance2IP'].OutputValue" --output text`
+sudo chmod 400 ~/environment/lab.pem
+#add an /etc/hosts entries for convenient SSH 
+salesappip=`aws ssm get-parameter --name salesappip --output text --query Parameter.Value`
+reportsengineip=`aws ssm get-parameter --name reportsengineip --output text --query Parameter.Value`
 echo " "
 echo "SSH key configured:"
 ls -lart ~/environment/lab.pem
