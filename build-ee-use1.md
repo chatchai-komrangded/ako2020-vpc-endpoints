@@ -41,8 +41,6 @@ https://console.aws.amazon.com/cloud9/home?region=us-east-1
 
 2.	Click on the “Open IDE” button on the Cloud9 instance.  The IDE loads in your browser.  Note; in event engine your Cloud9 environment may have a different name than is shown in the screenshots below.
 
-Cloud9 url in browser shows us-west-2 
-
 ![img10](./images/vpce-img10.png) 
 
 You have completed the following connection:
@@ -178,7 +176,7 @@ Resource policy - Gateway Endpoint policy template/example
 ```
 
 
-Using the Interface Endpoint policy template/example above, update the Interface Endpoint policy:
+Using the endpoint policy template/example above, update the endpoint policy:
 
 5.	Refer to the collected output values from your CloudFormation.  Copy/paste the value of the “RestrictedS3BucketName” output and use it to replace the value of examplerestrictedbucketname in the template/example above and save the custom policy.
 
@@ -317,7 +315,7 @@ Resource policy - Interface Endpoint policy template/example
 
 ![interface-overview-4](./images/interface-overview-4.png)
 
-1.	Access the SQS Console in your browser at https://console.aws.amazon.com/sqs/home?region=us-west-2#
+1.	Access the SQS Console in your browser at https://console.aws.amazon.com/sqs/home?region=us-east-1#
 2.	Refer to the collected output values from your CloudFormation stack.  Note the value of the “SQSQueueName” output.  This is your SQS Queue.
 3.	Select your SQS Queue in the upper pane of the AWS console.  Details for the endpoint are presented in the lower pane.  
 4.	In the lower main pane, select the tab titled “Permissions” and then click on “Edit Policy Document (Advanced)”.  A popup window appears..
@@ -325,7 +323,7 @@ Resource policy - Interface Endpoint policy template/example
 Update the SQS policy in your lab (a template/example is provided below):
 
 5.  Refer to the collected output values from your CloudFormation stack.  Note the value of the “SQSQueueARN” output.  This is your SQS Queue ARN.
-6.  Replace the placeholder value “sqsexampleARN” with the queue ARN for the queue created during CloudFormation lab setup and captured from the outputs table (format will be arn:aws:sqs:us-west-2:exampleacctid:examplequeuename)
+6.  Replace the placeholder value “sqsexampleARN” with the queue ARN for the queue created during CloudFormation lab setup and captured from the outputs table (format will be arn:aws:sqs:<region>:exampleacctid:examplequeuename)
 7.  Refer to the collected output values from your CloudFormation stack.  Note the value of the “SQSVPCInterfaceEndpoint” output.  This is your Interface VPC Endpoint.
 8.  Replace the example vpcid string “vpce-vpceid” with the ID of the Interface VPC endpoint created during CloudFormation lab setup and captured from the outputs table (format will be vpce-xxxxx)
 9.  Having updated the example policy (below) with values for your resources, update the SQS queue resource policy in the popup window.   
