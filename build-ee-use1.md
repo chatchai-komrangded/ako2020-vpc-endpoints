@@ -121,20 +121,17 @@ You will now review the IAM policies in use by the lab EC2 instances
 
 The Sales App IAM Role and Policy
 
-1.	Access the salesapp-role at the following URL: https://console.aws.amazon.com/iam/home?region=us-east-1#/roles/.  It will be named <stackname> salesapp role
+1.	Access the salesapp-role at the following URL: https://console.aws.amazon.com/iam/home?region=us-east-1#/roles/.  It will be named <CloduFormationStackName>-us-east-1-salesapp-role
 2.	Expand the attached policy to review permissions.  Notice that this role provides the Sales App access to “s3:PutObjects” on all S3 buckets and has "sqs:Send*", "sqs:Receive*", "sqs:Get*" and "sqs:List*" on the single SQS Queue resource which will be used for the sales report.
-3.	Review the trust policy by clicking on the Trust tab or accessing:  https://console.aws.amazon.com/iam/home?region=us-west-2#/roles/vpc-endpoints-lab-us-west-2-salesapp-role?section=trust
-4.	Notice that the identity provider(s) ec2.amazonaws.com is a trusted entity.  This trust policy allows the sales app EC2 instance to use the role.
+3.	Review the trust policy by clicking on the Trust tab.  Notice that the identity provider(s) ec2.amazonaws.com is a trusted entity.  This trust policy allows the sales app EC2 instance to use the role.
 
 ![img14](./images/vpce-img14.png) 
 
 The Reports Engine IAM Role and Policy
 
-1.	Access the following URL: https://console.aws.amazon.com/iam/home?region=us-west-2#/roles/vpc-endpoints-lab-us-west-2-reportsengine-role
+1.	Access the salesapp-role at the following URL: https://console.aws.amazon.com/iam/home?region=us-east-1#/roles/.  It will be named <CloduFormationStackName>-us-east-1-reportsengine-role
 2.	Expand the attached policy to review permissions.  Notice that this role provides the Reports Engine access to “s3:PutObjects” on all S3 buckets and has sqs: DeleteMessage*, sqs:Receive*, sqs:Get* and sqs:List* on the single SQS Queue resource which will be used for the sales report.
-3.	Review the trust policy by clicking on the Trust tab or accessing:  https://console.aws.amazon.com/iam/home?region=us-west-2#/roles/vpc-endpoints-lab-us-west-2-reportsengine-role?section=trust
-4.	Notice that the identity provider(s) ec2.amazonaws.com is a trusted entity.  This trust policy allows the sales app EC2 instance to use the role
-
+3.	Review the trust policy by clicking on the Trust tab.  Notice that the identity provider(s) ec2.amazonaws.com is a trusted entity.  This trust policy allows the sales app EC2 instance to use the role
 
 ## Part 2: Gateway Endpoint - Route Tables
 
