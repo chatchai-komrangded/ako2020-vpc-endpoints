@@ -140,7 +140,7 @@ You will now review the Route Tables in use by the lab EC2 instances
 ![gateway-overview-2](./images/gateway-overview-2.png) 
 
 1.  Collect the output values from your CloudFormation stack for PrivateSubnet1ARouteTable and PrivateSubnet2ARouteTable.  These are the route tables associated to your private subnets and affect the routing behavior of your EC2 instances; Sales App and Reports Engine.
-2.  Access the Route table screen in the VPC dashboard in the AWS console at the following URL:  https://us-west-2.console.aws.amazon.com/vpc/home?region=us-west-2#RouteTables:sort=routeTableId
+2.  Access the Route table screen in the VPC dashboard in the AWS console at the following URL: https://us-east-1.console.aws.amazon.com/vpc/home?region=us-east-1#RouteTables:sort=routeTableId
 3.  Highlight one of the route tables and examine the route table entries.  Note that a prefix list (format pl-xxx) entry has been populated in the route table and its target is the gateway vpc endpoint.  This entry is automatically populated by AWS when a gateway endpoint is created and associated with a subnet. 
 
 ![routetable](./images/route-table.png)
@@ -151,7 +151,7 @@ You will now configure the Gateway Endpoint Resource Policy restricting use of t
 
 ![gateway-overview-3](./images/gateway-overview-3.png) 
 
-1.	Access the Endpoints screen in the VPC dashboard in the AWS console: https://us-west-2.console.aws.amazon.com/vpc/home?region=us-west-2#Endpoints:sort=vpcEndpointId
+1.	Access the Endpoints screen in the VPC dashboard in the AWS console: https://us-east-1.console.aws.amazon.com/vpc/home?region=us-east-1#Endpoints:sort=vpcEndpointId
 2.	Refer to the collected output values from your CloudFormation.  Note the value of the “S3VPCGatewayEndpoint” output.  This is your VPC Gateway Endpoint ID.
 3.	Select your S3 Gateway Endpoint ID in the upper pane of the AWS console.  Details for the endpoint are presented in the lower pane.  Click on the Policy tab.  Click “Edit Policy” to edit the policy.  Click the custom radio button so that you can enter a custom policy.
 
