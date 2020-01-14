@@ -114,9 +114,6 @@ You will now review the IAM policies in use by the lab EC2 instances
 ![gateway-overview-1](./images/gateway-overview-1.png) 
 
 
-## !!!!!!!  Editing up to HERE !!!!!!!!! 1/13/2020
-
-
 The Sales App IAM Role and Policy
 
 1.	Access the salesapp-role at the following URL: https://console.aws.amazon.com/iam/home?region=us-east-1#/roles/.  It will be named <CloduFormationStackName>-us-east-1-salesapp-role
