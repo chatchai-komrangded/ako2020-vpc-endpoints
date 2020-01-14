@@ -1,10 +1,8 @@
-# Environment Setup 
- 
-The initial lab configuration has been completed using an event-engine blueprint  
+# Environment Setup  
 
-Use the Dashboard URL / hash provided for the VPC Endpoint workshop hosted on event engine
+Use the Event Engine Dashboard URL and the Hash provided to access the AWS account you will use for this lab
 
-Validate that the CloudFormation stack provisioned for your workshop completed successfully at: 
+Validate that the CloudFormation stacks used to setup the lab completed successfully at: 
 
 https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks
 
