@@ -92,7 +92,7 @@ Leave the tab with the SSH connection to the Reports Engine EC2 instance.  We wi
 
 https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks
 
-2.	Access the stack details for the lab setup by clicking on the stack names and selecting the Outputs tab on the stack detail pane. 1 Stack created the Cloud9 instance - it will have Cloud9 in the stack name.  Other lab components (VPC, SQS Queue, etc) were created by the other CloudFormation stack.  You will refer back to output values from this stack during this lab as you make confguration changes.  Note - the CloudFormation stack names may differ in your event engine account than those shown the screenshots in the lab documentation.
+2.	During this lab you will use outputs from the CloudFormation stacks used to setup the lab environment. Event engine will have created two Cloudformation stacks. One of the stacks created the Cloud9 instance - it will have aws-cloud9 in the stack name.  Additional lab components (VPC, SQS Queue, etc) were created by the second CloudFormation stack.  You will refer back to output values from this stack during this lab.  Note - the CloudFormation stack names may differ in your event engine account than those shown the screenshots in the lab documentation.
 
 ![img13](./images/vpce-img13.png) 
 
