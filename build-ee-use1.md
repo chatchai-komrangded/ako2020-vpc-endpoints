@@ -18,10 +18,14 @@ Your CEO has mandated that sales data in transit should not be on the Internet. 
 
 2.	Once data is placed on S3 and all backend system updates are completed by the sales application, it will place a message onto an Amazon Simple Queue Service (SQS) queue, triggering downstream report generation and SQS message deletion by the reports engine.  
 
+update to use us-east-1 in image 
+
 ![img2](./images/vpce-img8.png) 
 
 3.	The Reports Engine will read messages placed onto an Amazon SQS queue and generate a report
 4.	The Reports Engine will then write the output to S3 and delete the processed SQS message  
+
+update to use us-east-1 in image for sqs DNS entry
 
 ![img3](./images/vpce-img9.png)  
 
@@ -36,6 +40,8 @@ AWS Cloud9 is a cloud-based integrated development environment (IDE) that lets y
 https://console.aws.amazon.com/cloud9/home?region=us-east-1
 
 2.	Click on the “Open IDE” button on the Cloud9 instance.  The IDE loads in your browser.  Note; in event engine your Cloud9 environment may have a different name than is shown in the screenshots below.
+
+Cloud9 url in browser shows us-west-2 
 
 ![img10](./images/vpce-img10.png) 
 
