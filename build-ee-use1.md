@@ -35,9 +35,9 @@ AWS Cloud9 is a cloud-based integrated development environment (IDE) that lets y
 
 1.	Access the Cloud9 console: 
 
-https://us-west-2.console.aws.amazon.com/cloud9/home?region=us-west-2
+https://console.aws.amazon.com/cloud9/home?region=us-east-1
 
-2.	Click on the “Open IDE” button on the Cloud9 instance named vpc-endpoints-lab.  The IDE loads in your browser.  
+2.	Click on the “Open IDE” button on the Cloud9 instance.  The IDE loads in your browser.  Note; in event engine your Cloud9 environment may have a different name than is shown in the screenshots below.
 
 ![img10](./images/vpce-img10.png) 
 
@@ -53,7 +53,7 @@ You have completed the following connection:
 6.   Let's setup SSH configuration on the Cloud9 instance using the first terminal tab.  Run these commands from the Cloud9 instance: 
 
 ``` json
-aws s3 cp s3://vpc-endpoints-lab/prepcloud9forssh.sh ./prepcloud9forssh.sh; chmod 700 prepcloud9forssh.sh; ./prepcloud9forssh.sh
+aws s3 cp s3://ee-assets-prod-us-east-1/modules/7dbaeba0ef084e64a3566ebed6cb8bd2/v1/prepcloud9forssh.sh ./prepcloud9forssh.sh; chmod 700 prepcloud9forssh.sh; ./prepcloud9forssh.sh
 ``` 
 
 Output from the shell commands should look as follows:
@@ -84,11 +84,11 @@ Leave the tab with the SSH connection to the Reports Engine EC2 instance.  We wi
 
 ## Collect outputs from completed CloudFormation stack 
 
-1.	Access the CloudFormation stack named “vpc-endpoints-lab” at 
+1.	Access the CloudFormation stacks in your event engine account: 
 
-https://us-west-2.console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks
+https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks
 
-2.	Access the stack detail for the lab setup by clicking on the stack name “vpc-endpoints-lab” and selecting the Outputs tab on the stack detail pane.  You will refer back to output values during this lab as you make confguration changes.
+2.	Access the stack details for the lab setup by clicking on the stack names and selecting the Outputs tab on the stack detail pane. 1 Stack created the Cloud9 instance - it will have Cloud9 in the stack name.  Other lab components (VPC, SQS Queue, etc) were created by the other CloudFormation stack.  You will refer back to output values from this stack during this lab as you make confguration changes.  Note - the CloudFormation stack names may differ in your event engine account than those shown the screenshots in the lab documentation.
 
 ![img13](./images/vpce-img13.png) 
 
@@ -111,9 +111,13 @@ You will now review the IAM policies in use by the lab EC2 instances
 
 ![gateway-overview-1](./images/gateway-overview-1.png) 
 
+
+## !!!!!!!  Editing up to HERE !!!!!!!!! 1/13/2020
+
+
 The Sales App IAM Role and Policy
 
-1.	Access the following URL: https://console.aws.amazon.com/iam/home?region=us-west-2#/roles/vpc-endpoints-lab-us-west-2-salesapp-role
+1.	Access the salesapp-role at the following URL: https://console.aws.amazon.com/iam/home?region=us-east-1#/roles/.  It will be named <stackname> salesapp role
 2.	Expand the attached policy to review permissions.  Notice that this role provides the Sales App access to “s3:PutObjects” on all S3 buckets and has "sqs:Send*", "sqs:Receive*", "sqs:Get*" and "sqs:List*" on the single SQS Queue resource which will be used for the sales report.
 3.	Review the trust policy by clicking on the Trust tab or accessing:  https://console.aws.amazon.com/iam/home?region=us-west-2#/roles/vpc-endpoints-lab-us-west-2-salesapp-role?section=trust
 4.	Notice that the identity provider(s) ec2.amazonaws.com is a trusted entity.  This trust policy allows the sales app EC2 instance to use the role.

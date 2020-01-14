@@ -1,5 +1,6 @@
 #!/bin/sh
-aws --region=us-west-2 ssm get-parameter --name "lab" --with-decryption --output text --query Parameter.Value > ~/environment/lab.pem
+# aws configure get region
+aws --region us-east-1  ssm get-parameter --name "lab" --with-decryption --output text --query Parameter.Value > ~/environment/lab.pem
 #add proper carriage returns
 sed -i 's/\\n/\n/g' ~/environment/lab.pem
 #correct perms
