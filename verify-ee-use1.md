@@ -6,10 +6,10 @@ We will now verify the configuration to validate it meets the stated requirement
 ## Verify the Gateway Endpoint Configuration
 
 * Verify the Gateway Endpoint Configuration for s3:PutObject and s3:getObject calls to S3
-  * Writes to the restricted bucket must use the gateway endpoint AND write encrypted objects.
-  * Access to the gateway endpoint is only available to the private subnets. 
+  * Writes to the restricted bucket must use the gateway endpoint.
+  * Access to the gateway endpoint is only available to the private subnets via the route tables associated to the private subnets. 
 
-While connected to the Cloud9 instance, you will attempt to write data into restricted bucket and the unrestricted bucket.  The Cloud9 instance is running in your public subnet and has not route to the Gateway endpoint.  Consequently, traffic bound for S3 will traverse the Internet via the Internet Gateway in your lab.  
+While connected to the Cloud9 instance, you will attempt to write data into restricted bucket and the unrestricted bucket.  The Cloud9 instance is running in your public subnet and has no route to the Gateway endpoint.  Consequently, traffic bound for S3 will traverse the Internet via the Internet Gateway in your lab.  
 
 **Expected behavior is:** 
 * The restricted bucket policy will **DENY** s3:putObject calls, because these will occur over the Internet and not via the endpoint and the resource policy on the restricted bucket will DENY this action. 
@@ -27,13 +27,11 @@ You will execute steps 1 and 2 from the Cloud9 EC2 instance bash prompt:**
 2.  Execute the commands provided below AFTER replacing the values of <RestrictedS3Bucket> and <UnrestrictedS3Bucket> with the output values collected in step 1.  Make note of the results.
 
 ``` json
+sudo pip install --upgrade awscli 
 touch test.txt
 aws s3 cp test.txt s3://<RestrictedS3Bucket>/test.txt
-
-   
-aws s3 cp test.txt s3://<RestrictedS3Bucket>/test.txt –sse
 aws s3 cp test.txt s3://<UnrestrictedS3Bucket>/test.txt
-aws s3 cp test.txt s3://<UnrestrictedS3Bucket>/test.txt --sse  
+
 aws s3 rm s3://<UnrestrictedS3Bucket>/test.txt   
 aws s3 rm s3://<RestrictedS3Bucket>/test.txt     
 ```
@@ -54,13 +52,11 @@ The S3 upload tests attempting to upload a test file will reveal the following r
 |Command   |  Executed from Cloud9 EC2 Instance |  Executed from Sales App EC2 Instance |  
 |---|---|---|
 | aws s3 cp test.txt s3://'RestrictedS3Bucket'/test.txt    |  upload failed | upload failed  |  
-| aws s3 cp test.txt s3://'RestrictedS3Bucket'/test.txt --sse  |  	upload failed |  upload |
 | aws s3 cp test.txt s3://'UnrestrictedS3Bucket'/test.txt  |  upload |  upload failed |
-| aws s3 cp test.txt s3://'UnrestrictedS3Bucket'/test.txt --sse | upload  | upload failed  |
 
 The Cloud9 EC2 instance sits in the public subnet in your VPC and does not have a network route to the VPC Gateway Endpoint.  An access denied message is returned from the restricted bucket both for encrypted and unencrypted s3:PutObject API calls. Put object requests fail because the request to S3 occurs via the Internet and not the VPC Endpoint.  The bucket policy (resource policy) added by you denies access.
 
-The Sales App EC2 instance sits in a private subnet in your VPC and has a path in its route table to the gateway endpoint.  Calls to S3 are made via the gateway endpoint and access to the bucket occurs over a private network segment.  s3:PutObject API calls without the –sse flag fail as the bucket policy rejects unencrypted PutObject requests.  S3:PutObject requests to the unrestricted bucket fail as the gateway endpoint policy restricts access to s3:GetObject, s3:PutObject API calls against the restricted bucket only via the gateway.  Used in combination with other network controls, the gateway endpoint can restrict which S3 buckets are accessible to resources running within a VPC. 
+The Sales App EC2 instance sits in a private subnet in your VPC and has a path in its route table to the gateway endpoint.  Calls to S3 are made via the gateway endpoint and access to the bucket occurs over a private network segment. S3:PutObject requests to the unrestricted bucket fail as the gateway endpoint policy restricts access to s3:GetObject, s3:PutObject API calls against the restricted bucket only via the gateway.  Used in combination with other network controls, the gateway endpoint can restrict which S3 buckets are accessible to resources running within a VPC. 
 
 ## Verify the Interface Endpoint Configuration 
 
