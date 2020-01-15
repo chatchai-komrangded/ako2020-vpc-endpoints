@@ -116,15 +116,13 @@ You will now review the IAM policies in use by the lab EC2 instances
 The Sales App IAM Role and Policy
 
 1.	Access the salesapp role at the following URL: https://console.aws.amazon.com/iam/home?region=us-east-1#/roles.  The role will be named with the cloudFormation stack name, followed by the region it was created in, followed by the string 'salesapp-role'.
-2.	Expand the attached policy to review permissions.  Notice that this role provides the Sales App access to “s3:PutObjects” on all S3 buckets and has "sqs:Send*", "sqs:Receive*", "sqs:Get*" and "sqs:List*" on the single SQS Queue resource which will be used for the sales report.
+2.	Expand the attached policy to review permissions.  Notice that the salesapp role has full access to the unrestricted bucket.  It has read/write access to the restricted bucket.   It has permissions on the SQS queue, including the ability to Send (write) a message to indicate data for the sales report has been written into the restricted S3 bucket.
 3.	Review the trust policy by clicking on the Trust tab.  Notice that the identity provider(s) ec2.amazonaws.com is a trusted entity.  This trust policy allows the sales app EC2 instance to use the role.
-
-![img14](./images/vpce-img14.png) 
 
 The Reports Engine IAM Role and Policy
 
-1.	Access the reportsengine role at the following URL: https://console.aws.amazon.com/iam/home?region=us-east-1#/roles/.  The role will be named with the cloudFormation stack name, followed by the region it was created in, followed by the string 'reportsengine-role'.
-2.	Expand the attached policy to review permissions.  Notice that this role provides the Reports Engine access to “s3:PutObjects” on all S3 buckets and has sqs: DeleteMessage*, sqs:Receive*, sqs:Get* and sqs:List* on the single SQS Queue resource which will be used for the sales report.
+1.	Access the reportsengine role at the following URL: https://console.aws.amazon.com/iam/home?region=us-east-1#/roles.  The role will be named with the cloudFormation stack name, followed by the region it was created in, followed by the string 'reportsengine-role'.
+2.	Expand the attached policy to review permissions.  Notice that the reportsengine role provides full access to the unrestricted bucket.  It has read/write access to the restricted bucket.  It has permissions on the SQS queue, including the ability to delete SQS messages on the SQS Queue resource which will be used for the sales report.
 3.	Review the trust policy by clicking on the Trust tab.  Notice that the identity provider(s) ec2.amazonaws.com is a trusted entity.  This trust policy allows the sales app EC2 instance to use the role
 
 ## Part 2: Gateway Endpoint - Route Tables

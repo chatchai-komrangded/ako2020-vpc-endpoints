@@ -1,6 +1,6 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Description: >-
-  VPC Endpoints Lab - AKO 2020 v1.5
+  VPC Endpoints Lab - AKO 2020 v1.6
 Metadata:
   AWS::CloudFormation::Interface:
     ParameterGroups:
@@ -608,7 +608,7 @@ Resources:
         Statement:
           - Effect: Allow
             Action:
-              - 's3:ListBucket'
+              - 's3:*'
             Resource: !Sub 'arn:aws:s3:::${UnrestrictedS3Bucket}'
           - Effect: Allow
             Action:
@@ -695,7 +695,7 @@ Resources:
           Statement:
           - Effect: Allow
             Action:
-              - 's3:ListBucket'
+              - 's3:*'
             Resource: !Sub 'arn:aws:s3:::${UnrestrictedS3Bucket}'
           - Effect: Allow
             Action:

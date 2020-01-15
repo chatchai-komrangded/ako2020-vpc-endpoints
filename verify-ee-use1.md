@@ -60,8 +60,8 @@ aws s3 cp test.txt s3://<UnrestrictedS3Bucket>/test.txt
 
 |Command   |   Executed from Sales App EC2 Instance |  
 |---|---|---|
-| aws s3 cp test.txt s3://'RestrictedS3Bucket'/test.txt    | upload failed  |  
-| aws s3 cp test.txt s3://'UnrestrictedS3Bucket'/test.txt  | upload  |
+| aws s3 cp test.txt s3://'RestrictedS3Bucket'/test.txt    | upload  |  
+| aws s3 cp test.txt s3://'UnrestrictedS3Bucket'/test.txt  | upload failed |
 
 ## Verify the Interface Endpoint Configuration 
 
