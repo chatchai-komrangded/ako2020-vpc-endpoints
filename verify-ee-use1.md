@@ -27,7 +27,6 @@ You will execute steps 1 and 2 from the Cloud9 EC2 instance bash prompt:**
 2.  Execute the commands provided below AFTER replacing the values of <RestrictedS3Bucket> and <UnrestrictedS3Bucket> with the output values collected in step 1.  Make note of the results.
 
 ``` json
-sudo pip install --upgrade awscli 
 touch test.txt
 aws s3 cp test.txt s3://<RestrictedS3Bucket>/test.txt
 aws s3 cp test.txt s3://<UnrestrictedS3Bucket>/test.txt
