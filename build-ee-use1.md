@@ -201,7 +201,7 @@ Resource policy - S3 bucket policy template/example
      {
        "Sid": "Access-to-put-objects-via-specific-VPCE-only",
        "Principal": "*",
-       "Action": "s3:PutObject",
+       "Action": "s3:*",
        "Effect": "Deny",
        "Resource": ["arn:aws:s3:::examplerestrictedbucketname",
                     "arn:aws:s3:::examplerestrictedbucketname/*"],
