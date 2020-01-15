@@ -100,8 +100,8 @@ You will now examine/update configurations to control access to resources and en
 
 * **Part 1. Gateway Endpoint - IAM Roles**.  The EC2 instances will use an IAM Role with associated IAM policies which provide permissions to execute API calls against S3.  [See IAM roles for EC2 instances for more information.](https://aws.amazon.com/blogs/aws/iam-roles-for-ec2-instances-simplified-secure-access-to-aws-service-apis-from-ec2/)  
 * **Part 2. Gateway Endpoint - Route Tables**.  Routes to the gateway endpoint are placed in the route tables for the private subnets only.  API calls issued from the Cloud9 instance (on the public subnet) will use a route table without an entry that routes traffic to the S3 gateway endpoint.  Consequently, traffic destined for S3 IP addresses that originates on the Cloud9 instance will exit the VPC via the Internet Gateway and traverse the Internet.  API calls issued from the sales application and report engine E2 instances (on the private subnet) will use a route table entry that routes traffic to the gateway endpoint to access S3.
-* **Part 3. Gateway Endpoint – Gateway Endpoint Resource Policy**.  You will use a gateway endpoint policy to restrict which S3 buckets can be accessed via the gateway.  This will help prevent data being written into a bucket which has not been appropriately secured.
-* **Part 4. Gateway Endpoint – S3 Bucket Resource Policy**.  You will use a resource policy (an S3 bucket policy) to require all data written to the S3 bucket is encrypted at rest using Advanced Encryption Standard 256-bit encryption (AES256).  We will also use the S3 bucket policy to require that all s3:PutObject API calls (used to write data) occur via the Gateway VPC Endpoint.  This will ensure that the data written to this bucket occurs across a private network segment.  We will also restrict access to the bucket to a limited set of IAM Principals based on attributes.
+* **Part 3. Gateway Endpoint – Gateway Endpoint Resource Policy**.  You will use a gateway endpoint policy to restrict which S3 buckets can be accessed via the gateway.   
+* **Part 4. Gateway Endpoint – S3 Bucket Resource Policy**.  You will use a resource policy (an S3 bucket policy) to require  that all s3:PutObject API calls (used to write data) occur via the Gateway VPC Endpoint.  This will ensure that the data written to this bucket occurs across a private network segment.   
 
 ## Part 1: Gateway Endpoint - IAM Roles
 
@@ -112,7 +112,7 @@ You will now review the IAM policies in use by the lab EC2 instances
 
 The Sales App IAM Role and Policy
 
-1.	Access the salesapp-role at the following URL: https://console.aws.amazon.com/iam/home?region=us-east-1#/roles.  It will be named <CloduFormationStackName>-us-east-1-salesapp-role
+1.	Access the salesapp role at the following URL: https://console.aws.amazon.com/iam/home?region=us-east-1#/roles.  The role will be named with the cloudFormation stack name, followed by the region it was created in, followed by the string 'salesapp-role'.
 2.	Expand the attached policy to review permissions.  Notice that this role provides the Sales App access to “s3:PutObjects” on all S3 buckets and has "sqs:Send*", "sqs:Receive*", "sqs:Get*" and "sqs:List*" on the single SQS Queue resource which will be used for the sales report.
 3.	Review the trust policy by clicking on the Trust tab.  Notice that the identity provider(s) ec2.amazonaws.com is a trusted entity.  This trust policy allows the sales app EC2 instance to use the role.
 
@@ -120,7 +120,7 @@ The Sales App IAM Role and Policy
 
 The Reports Engine IAM Role and Policy
 
-1.	Access the salesapp-role at the following URL: https://console.aws.amazon.com/iam/home?region=us-east-1#/roles/.  It will be named <CloduFormationStackName>-us-east-1-reportsengine-role
+1.	Access the reportsengine role at the following URL: https://console.aws.amazon.com/iam/home?region=us-east-1#/roles/.  The role will be named with the cloudFormation stack name, followed by the region it was created in, followed by the string 'reportsengine-role'.
 2.	Expand the attached policy to review permissions.  Notice that this role provides the Reports Engine access to “s3:PutObjects” on all S3 buckets and has sqs: DeleteMessage*, sqs:Receive*, sqs:Get* and sqs:List* on the single SQS Queue resource which will be used for the sales report.
 3.	Review the trust policy by clicking on the Trust tab.  Notice that the identity provider(s) ec2.amazonaws.com is a trusted entity.  This trust policy allows the sales app EC2 instance to use the role
 
