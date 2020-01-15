@@ -1,6 +1,6 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Description: >-
-  VPC Endpoints Lab - AKO 2020 v1.4
+  VPC Endpoints Lab - AKO 2020 v1.5
 Metadata:
   AWS::CloudFormation::Interface:
     ParameterGroups:
