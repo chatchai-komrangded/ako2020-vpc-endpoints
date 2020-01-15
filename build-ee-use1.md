@@ -376,4 +376,4 @@ Resource policy - SQS Queue resource policy template/example
 
 ---
 
-**Congratulations !!!**  You can now move on to the [**Verify**](./verify.md) phase!
+**Congratulations !!!**  You can now move on to the [**Verify**](./verify-ee-use1.md) phase!
