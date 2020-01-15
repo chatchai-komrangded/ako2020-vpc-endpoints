@@ -14,7 +14,7 @@ You are a security engineer on a team responsible for applications hosted in AWS
 
 Your CEO has mandated that sales data in transit should not be on the Internet.  She has asked that you work with the development team to demonstrate that extracted sales data is encrypted in transit and that data is transmitted across private network segments only.  The development team has begun building a lab environment inside an Amazon Virtual Private Cloud (VPC), but now need your assistance securing the setup further.  You plan to meet this requirement by using VPC Endpoints. 
 
-1.	The sales application will write daily sales summarizations to Amazon Simple Storage Service (S3) and then update multiple backend compensation systems.  Data stored on S3 will be encrypted using server-side encryption with Amazon Key Management Service (KMS).  
+1.	The sales application will write daily sales summarizations to Amazon Simple Storage Service (S3) and then update multiple backend compensation systems.   
 
 2.	Once data is placed on S3 and all backend system updates are completed by the sales application, it will place a message onto an Amazon Simple Queue Service (SQS) queue, triggering downstream report generation and SQS message deletion by the reports engine.  
 
@@ -22,8 +22,6 @@ Your CEO has mandated that sales data in transit should not be on the Internet. 
 
 3.	The Reports Engine will read messages placed onto an Amazon SQS queue and generate a report
 4.	The Reports Engine will then write the output to S3 and delete the processed SQS message  
-
-update to use us-east-1 in image for sqs DNS entry
 
 ![img3](./images/vpce-img9.png)  
 
