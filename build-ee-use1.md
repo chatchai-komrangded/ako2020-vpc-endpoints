@@ -215,7 +215,7 @@ Resource policy - S3 bucket policy template/example
 
 ```
 
-7. (Optional) Enable default encryption on your S3 bucket to ensure that all objects are encrypted at rest.  Access the  Properties tabof your S3 bucket.  Access the 'Default Encryption' Pane and choose the AWS-KMS (Use Server-Side Encryption with AWS KMS-Managed Keys (SSE-KMS)) radio button. Select the 'aws/s3' AWS-managed KMS key as your default encryption key.   
+7. Enable default encryption on your S3 bucket to ensure that all objects are encrypted at rest.  Amazon S3 default encryption provides a way to set the default encryption behavior for an S3 bucket. You can set default encryption on a bucket so that all new objects are encrypted when they are stored in the bucket. Access the Properties tab of your restricted S3 bucket.  Access the 'Default Encryption' Pane and choose the AWS-KMS (Use Server-Side Encryption with AWS KMS-Managed Keys (SSE-KMS)) radio button. Select the 'aws/s3' AWS-managed KMS key as your default encryption key.   
 
 ---
 
