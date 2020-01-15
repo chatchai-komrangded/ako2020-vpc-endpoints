@@ -214,31 +214,7 @@ Resource policy - S3 bucket policy template/example
            "aws:sourceVpce": "vpce-vpceid"
          }
        }
-     },
-     {
-          "Sid": "DenyIncorrectEncryptionHeader",
-          "Effect": "Deny",
-          "Principal": "*",
-          "Action": "s3:PutObject",
-          "Resource": "arn:aws:s3:::examplerestrictedbucketname/*",
-          "Condition": {
-                  "StringNotEquals": {
-                         "s3:x-amz-server-side-encryption": "AES256"
-                   }
-          }
-     },
-     {
-          "Sid": "DenyUnEncryptedObjectUploads",
-          "Effect": "Deny",
-          "Principal": "*",
-          "Action": "s3:PutObject",
-          "Resource": "arn:aws:s3:::examplerestrictedbucketname/*",
-          "Condition": {
-                  "Null": {
-                         "s3:x-amz-server-side-encryption": true
-                  }
-         }
-     }
+     }   
    ]
 }
 
