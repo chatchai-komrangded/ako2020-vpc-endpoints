@@ -1,6 +1,6 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Description: >-
-  VPC Endpoints Lab - AKO 2020 v1.3
+  VPC Endpoints Lab - AKO 2020 v1.4
 Metadata:
   AWS::CloudFormation::Interface:
     ParameterGroups:
@@ -608,15 +608,13 @@ Resources:
         Statement:
           - Effect: Allow
             Action:
-              - 's3:*'
+              - 's3:ListBucket'
             Resource: !Sub 'arn:aws:s3:::${UnrestrictedS3Bucket}'
           - Effect: Allow
             Action:
               - 's3:GetObject'
-              - 's3:ListAllMyBuckets' 
-              - 's3:GetBucketLocation'
               - 's3:PutObject'
-              - 's3:PutObjectAcl'
+              - 's3:DeleteObject'
             Resource: !Sub 'arn:aws:s3:::${RestrictedS3Bucket}'
       Roles:
       - !Ref IAMRole1
@@ -697,15 +695,13 @@ Resources:
           Statement:
           - Effect: Allow
             Action:
-              - 's3:*'
+              - 's3:ListBucket'
             Resource: !Sub 'arn:aws:s3:::${UnrestrictedS3Bucket}'
           - Effect: Allow
             Action:
               - 's3:GetObject'
-              - 's3:ListAllMyBuckets' 
-              - 's3:GetBucketLocation'
               - 's3:PutObject'
-              - 's3:PutObjectAcl'
+              - 's3:DeleteObject'
             Resource: !Sub 'arn:aws:s3:::${RestrictedS3Bucket}'
       Roles:
         - !Ref IAMRole2
