@@ -273,7 +273,7 @@ Resource policy - Interface Endpoint policy template/example
       "Effect": "Allow",
       "Resource": "examplequeueARN",
       "Principal": {
-        "AWS": "arn:aws:iam:exampleaccountid:*"
+        "AWS": "exampleaccountid"
       }
    }]
 }	
