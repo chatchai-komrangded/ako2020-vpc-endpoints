@@ -36,7 +36,7 @@ aws s3 rm s3://<RestrictedS3Bucket>/test.txt
 * The unrestricted bucket will **ALLOW** s3:putObject calls, because the unrestricted bucket does not have a bucket policy requiring use of the endpoint. 
 
 |Command   |  Executed from Cloud9 EC2 Instance |   
-|---|---|---|
+|---|---|
 | aws s3 cp test.txt s3://'RestrictedS3Bucket'/test.txt    |  upload failed | 
 | aws s3 cp test.txt s3://'UnrestrictedS3Bucket'/test.txt  |  upload |  
 
@@ -59,7 +59,7 @@ aws s3 cp test.txt s3://<UnrestrictedS3Bucket>/test.txt
 * Access to the restricted bucket is successful.  
 
 |Command   |   Executed from Sales App EC2 Instance |  
-|---|---|---|
+|---|---|
 | aws s3 cp test.txt s3://'RestrictedS3Bucket'/test.txt    | upload  |  
 | aws s3 cp test.txt s3://'UnrestrictedS3Bucket'/test.txt  | upload failed |
 
