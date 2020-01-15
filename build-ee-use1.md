@@ -116,7 +116,7 @@ You will now review the IAM policies in use by the lab EC2 instances
 
 The Sales App IAM Role and Policy
 
-1.	Access the salesapp-role at the following URL: https://console.aws.amazon.com/iam/home?region=us-east-1#/roles/.  It will be named <CloduFormationStackName>-us-east-1-salesapp-role
+1.	Access the salesapp-role at the following URL: https://console.aws.amazon.com/iam/home?region=us-east-1#/roles.  It will be named <CloduFormationStackName>-us-east-1-salesapp-role
 2.	Expand the attached policy to review permissions.  Notice that this role provides the Sales App access to “s3:PutObjects” on all S3 buckets and has "sqs:Send*", "sqs:Receive*", "sqs:Get*" and "sqs:List*" on the single SQS Queue resource which will be used for the sales report.
 3.	Review the trust policy by clicking on the Trust tab.  Notice that the identity provider(s) ec2.amazonaws.com is a trusted entity.  This trust policy allows the sales app EC2 instance to use the role.
 
