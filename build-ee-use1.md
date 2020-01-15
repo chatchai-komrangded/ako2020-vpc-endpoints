@@ -6,7 +6,7 @@ Validate that the CloudFormation stacks used to setup the lab completed successf
 
 https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks
 
-Verify that all stacks have been provisioned with a status of **CREATE_COMPLETE**
+Verify that all stacks have been provisioned with a status of **CREATE_COMPLETE** 
 
 ## Lab scenario
 
