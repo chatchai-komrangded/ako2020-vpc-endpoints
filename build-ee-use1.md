@@ -8,6 +8,9 @@ https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/s
 
 Verify that all stacks have been provisioned with a status of **CREATE_COMPLETE** 
 
+Note:  The AWS region used in the screenshots/diagrams below may differ from your Event Engine region (US-EAST-1).  
+Additionally, CloudFormation stack names will be different.  
+
 ## Lab scenario
 
 You are a security engineer on a team responsible for applications hosted in AWS.  You have been asked to help your company’s software development team implement a solution to securely share data between a sales application and a reports engine.  The CEO has asked the development team to create a dashboard report using sales and compensation data.  
