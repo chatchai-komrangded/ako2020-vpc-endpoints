@@ -54,18 +54,14 @@ aws s3 cp test.txt s3://<RestrictedS3Bucket>/test.txt
 aws s3 cp test.txt s3://<UnrestrictedS3Bucket>/test.txt
   
 ```
-
-4. Once you have connected to the SalesApp, execute the same set of commands from the shell prompt as completed in step 2. Make note of the results.
-
-The S3 upload tests attempting to upload a test file will reveal the following results
+**Expected behavior When Executed from Cloud9 Instance is:** 
+* The Sales App EC2 instance sits in a private subnet in your VPC and has a path in its route table to the gateway endpoint.  Calls to S3 are made via the gateway endpoint and access to the bucket occurs over a private network segment. S3:PutObject requests to the unrestricted bucket fail as the gateway endpoint policy will **DENY** access to the unrestricted bucket  
+* Access to the restricted bucket is successful.  
 
 |Command   |   Executed from Sales App EC2 Instance |  
 |---|---|---|
 | aws s3 cp test.txt s3://'RestrictedS3Bucket'/test.txt    | upload failed  |  
 | aws s3 cp test.txt s3://'UnrestrictedS3Bucket'/test.txt  | upload  |
-
-**Expected behavior When Executed from salesapp Instance is:** 
-The Sales App EC2 instance sits in a private subnet in your VPC and has a path in its route table to the gateway endpoint.  Calls to S3 are made via the gateway endpoint and access to the bucket occurs over a private network segment. S3:PutObject requests to the unrestricted bucket fail as the gateway endpoint policy will **DENY** access to the unrestricted bucket via the gateway.  Access to the restricted bucket is successful.  Used in combination with other network controls, the gateway endpoint can restrict which S3 buckets are accessible to resources running within a VPC. 
 
 ## Verify the Interface Endpoint Configuration 
 
