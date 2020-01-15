@@ -138,7 +138,7 @@ You will now review the Route Tables in use by the lab EC2 instances
 
 ## Part 3: Gateway Endpoint – Gateway Endpoint Resource Policy
 
-You will now configure the Gateway Endpoint Resource Policy restricting use of the gateway resource
+You will now configure the Gateway Endpoint Resource Policy restricting which S3 buckets can be accessed via the gateway endpoint
 
 ![gateway-overview-3](./images/gateway-overview-3.png) 
 
@@ -167,7 +167,6 @@ Resource policy - Gateway Endpoint policy template/example
   ]
 }	
 ```
-
 
 Using the endpoint policy template/example above, update the endpoint policy:
 
