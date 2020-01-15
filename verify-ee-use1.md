@@ -11,10 +11,6 @@ We will now verify the configuration to validate it meets the stated requirement
 
 While connected to the Cloud9 instance, you will attempt to write data into restricted bucket and the unrestricted bucket.  The Cloud9 instance is running in your public subnet and has no route to the Gateway endpoint.  Consequently, traffic bound for S3 will traverse the Internet via the Internet Gateway in your lab.  
 
-**Expected behavior is:** 
-* The restricted bucket policy will **DENY** s3:putObject calls, because these will occur over the Internet and not via the endpoint and the resource policy on the restricted bucket will DENY this action. 
-* The unrestricted bucket will **ALLOW** s3:putObject calls, because the unrestricted bucket does not have a bucket policy requiring use of the endpoint. 
-
 In your Cloud9 terminal window, open a terminal session.  
 
 ![verify-1](./images/verify-1.png) 
@@ -35,6 +31,10 @@ aws s3 rm s3://<UnrestrictedS3Bucket>/test.txt
 aws s3 rm s3://<RestrictedS3Bucket>/test.txt     
 ```
 
+**Expected behavior When Executed from Cloud9 Instance is:** 
+* The restricted bucket policy will **DENY** s3:putObject calls, because these will occur over the Internet and not via the endpoint and the resource policy on the restricted bucket will DENY this action. 
+* The unrestricted bucket will **ALLOW** s3:putObject calls, because the unrestricted bucket does not have a bucket policy requiring use of the endpoint. 
+
 3. Connect to the Sales App EC2 instance.  You will now establish an SSH connection to the EC2 Sales App instance running in a private subnet in the lab VPC.   
 
 ``` json
@@ -45,15 +45,12 @@ ssh ec2-user@salesapp -i lab.pem
 
 4. Once you have connected to the SalesApp, execute the same set of commands from the shell prompt as completed in step 2. Make note of the results.
 
-
 The S3 upload tests attempting to upload a test file will reveal the following results
 
 |Command   |  Executed from Cloud9 EC2 Instance |  Executed from Sales App EC2 Instance |  
 |---|---|---|
 | aws s3 cp test.txt s3://'RestrictedS3Bucket'/test.txt    |  upload failed | upload failed  |  
 | aws s3 cp test.txt s3://'UnrestrictedS3Bucket'/test.txt  |  upload |  upload failed |
-
-The Cloud9 EC2 instance sits in the public subnet in your VPC and does not have a network route to the VPC Gateway Endpoint.  An access denied message is returned from the restricted bucket both for encrypted and unencrypted s3:PutObject API calls. Put object requests fail because the request to S3 occurs via the Internet and not the VPC Endpoint.  The bucket policy (resource policy) added by you denies access.
 
 The Sales App EC2 instance sits in a private subnet in your VPC and has a path in its route table to the gateway endpoint.  Calls to S3 are made via the gateway endpoint and access to the bucket occurs over a private network segment. S3:PutObject requests to the unrestricted bucket fail as the gateway endpoint policy restricts access to s3:GetObject, s3:PutObject API calls against the restricted bucket only via the gateway.  Used in combination with other network controls, the gateway endpoint can restrict which S3 buckets are accessible to resources running within a VPC. 
 
